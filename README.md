@@ -1,0 +1,2 @@
+# multi_criteria_optimization
+multi_criteria_optimization labs
