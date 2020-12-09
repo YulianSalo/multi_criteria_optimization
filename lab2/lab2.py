@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-#Function to find the best result. It takes a working dataframe, given dataframe, specific column and minimum or maximun criterial
+#Function to find the best result. It takes a working dataframe, given dataframe, specific column and minimum or maximun criterial as function parameters
 def selectTheBestFunc(df_used, df_default, points_value, search_v):
     
     #if the maximum criterial was given as func.parameter the fucntion returns an element with the maximum value in a specified column
@@ -20,14 +20,14 @@ def selectTheBestFunc(df_used, df_default, points_value, search_v):
         return points_min, result
 
 
-#Function to print the best result according to solution. It takes number of the best solution element and the element itself as the function parameters
+#Function to print the best result according to solution. It takes number of the best solution element and the element itself as function parameters
 def printTheBestFunc(df_points, df_value):
     
     print("\nThe best solution is number :", df_points, "\n")
     print(df_value)
     print("\n")
 
-#Function to find column name of the dataframe. It takes series object and specific element as a function parameters
+#Function to find column name of the dataframe. It takes series object and specific element as function parameters
 def findIndexSeriesFunc(series, el):
     
     #Iterating through the loop and checking whether specific element is in the series 
@@ -40,6 +40,15 @@ def findIndexSeriesFunc(series, el):
     #If the element is not in the series the fuction returns None object
     return None
 
+#Function to plot dataframes. It takes a dataframe as function parameters
+def funcPlot(df):
+
+    #Iteration through each column in dataframe    
+    for col in df.columns:
+        
+        #plotting each column
+        df.plot(kind = 'bar', y = col)
+        plt.show()
 
 def main():
     #CSV file reading
@@ -112,16 +121,18 @@ def main():
 
     new_section = "########################################################################################"
 
+    #Given dataframe print&plot
     print(new_section)
     print("\nGiven\n")
     print (df)
+    funcPlot(df)
+    print("\n")
 
-    #plot given data
-    for col in df.columns:
-        df.plot(kind = 'bar', y = col)
-        plt.show()
-
-
+    #Normalized dataframe print&plot
+    print(new_section)
+    print("\nNormalized\n")
+    print (divided)
+    funcPlot(divided)
     print("\n")
 
     #Additive method result print
@@ -135,6 +146,9 @@ def main():
     print("\nMultiplicative\n")
     print(multiplicative)
     printTheBestFunc(multi_points_max, multi_max)
+
+    #Ginen*coeffs plot
+    funcPlot(coeff_df)
 
     #MaxiMin method result print
     print(new_section)
