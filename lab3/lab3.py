@@ -41,7 +41,7 @@ def main():
     coeff_plot_df = coeff_plot_df.mul(coeff, axis=1)
 
     #Coeff dataframe sort
-    coeff_df = coeff_df.sort_values(["Price UAH thousand", "Reliability hours", "Productivity units/hour"], ascending=[True, False, False])
+    coeff_df_sorted = coeff_df.sort_values(["Price UAH thousand", "Reliability hours", "Productivity units/hour"], ascending=[True, False, False])
     
     #Coeff plotting dataframe sort
     coeff_plot_df = coeff_plot_df.sort_values(["Price UAH thousand * 100", "Reliability hours * 10", "Productivity units/hour"], ascending=[True, False, False])
@@ -57,15 +57,17 @@ def main():
 
     #Coeff dataframes print&plot
     print(new_section)
-    print("\n Coefficents applied. Targat functions: Price -> min; Reliablity -> max; Productivity -> max\n")
+    print("\n Coefficents applied\n")
     print(coeff_df)
+    print("\n Coefficents applied, data sorted. Targat functions: Price -> min; Reliablity -> max; Productivity -> max\n")
+    print(coeff_df_sorted)
     coeff_plot_df.plot.bar()
     plt.title("Coefficents applied. Targat functions: Price -> min; Reliablity -> max; Productivity -> max")
     
     #Solution dataframes print&plot
     print(new_section)
     print("\nSolution: Top 4\n")
-    print(coeff_df.head(4))
+    print(coeff_df_sorted.head(4))
     
     coeff_plot_df.head(4).plot.bar()
     plt.title("Solution: Top 4")
